@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  backend:
+    image: niklasxulls/dive-species-rest-api:latest
+    container_name: species-rest-api
+    volumes:
+      - ./backend/appsettings.Production.json:/appsettings.Production.json
+    ports:
+      - "5000:80"
+    networks:
+      - dive-species-network
+    depends_on:
+      - db
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["sleep 20 && dotnet DiveSpecies.Rest.dll"]
+
+  db:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: species-sql-server
+    volumes:
+      - ./db/data:/var/opt/mssql/data
+      - ./db/log:/var/opt/mssql/log
+    environment:
+      - ACCEPT_EULA=y
+      - MSSQL_SA_PASSWORD=A_VeryComplex123Password
+    ports: 
+      - "1435:1433" 
+    networks:
+      - dive-species-network
+
+
+networks:
+  dive-species-network:
+    name: dive-species-network

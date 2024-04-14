@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>DiveSpecies.Application.IntegrationTests</RootNamespace>
+    <AssemblyName>DiveSpecies.Application.IntegrationTests</AssemblyName>
+
+    <IsPackable>false</IsPackable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <None Remove="appsettings.Test.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.Test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="34.0.2" />
+    <PackageReference Include="Meziantou.Xunit.ParallelTestFramework" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+    <PackageReference Include="FluentAssertions" Version="6.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="Microsoft.TestPlatform" Version="17.4.1" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NetTopologySuite" Version="2.5.0" />
+    <PackageReference Include="Respawn" Version="6.0.0" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.analyzers" Version="1.1.0" />
+    <PackageReference Include="Xunit.Extensions.Ordering" Version="1.4.5" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Application\Application.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Rest\Rest.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="xunit.core">
+      <HintPath>..\..\..\..\..\..\..\NugetCache\xunit.extensibility.core\2.4.2\lib\netstandard1.1\xunit.core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+  
+
+</Project>

@@ -1,0 +1,25 @@
+
+ARG WORK_DIRECTORY=/app
+ARG ARTIFACT_DIRECTORY_NAME=out
+ARG ARTIFACT_DIRECTORY=${WORK_DIRECTORY}/${ARTIFACT_DIRECTORY_NAME}
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+ARG WORK_DIRECTORY
+ARG ARTIFACT_DIRECTORY_NAME
+ARG ARTIFACT_DIRECTORY
+
+WORKDIR ${WORK_DIRECTORY}
+COPY . ./
+
+RUN dotnet restore
+RUN dotnet publish --configuration Release --no-restore -o ${ARTIFACT_DIRECTORY_NAME}
+
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime-env
+ARG ARTIFACT_DIRECTORY
+ARG DLL_ENTRYPOINT
+
+WORKDIR ${WORK_DIRECTORY}
+COPY --from=build-env ${ARTIFACT_DIRECTORY} .
+EXPOSE 80
+ENTRYPOINT ["dotnet", "DiveSpecies.Rest.dll"]

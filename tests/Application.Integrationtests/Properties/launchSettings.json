@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Application.IntegrationTests": {
+      "commandName": "Project",
+      "nativeDebugging": true,
+      "sqlDebugging": true
+    }
+  }
+}
